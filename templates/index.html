@@ -8,6 +8,7 @@
     </div>
 
     <script>
+        const chatworker = new Worker('/static/chatworker.js');
         const panel = document.getElementById('url_recv_panel');
         panel.addEventListener('paste', async function(e) {
             console.log('Paste event triggered'); // Log when the paste event is triggered
@@ -31,8 +32,11 @@
                 body: text
                 });
                 let result = await response.text();
-                console.log('Server response:', result); // Log the server response
+                console.log('Server response:', result);
                 document.getElementById('output').textContent = result;
+                chatworker.postMessage(result);
+                
+            
             } else {
                 console.log('The pasted text is not a valid URL');
                 document.getElementById('output').textContent = 'The pasted text is not a valid URL';
