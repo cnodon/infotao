@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div id="url_recv_panel" style="width: 50%; height: 200px; border: 1px solid black;">
+            <p id="output"></p>
+        </div>
+    </div>
+
+    <script>
+        const panel = document.getElementById('url_recv_panel');
+        panel.addEventListener('paste', async function(e) {
+            console.log('Paste event triggered'); // Log when the paste event is triggered
+            e.preventDefault();
+            let text = e.clipboardData.getData('text');
+            console.log('Pasted text:', text); // Log the pasted text
+
+            let url_is_valid = true;
+
+            // Check if the pasted text is a valid URL
+            try {
+                new URL(text);  
+            } catch (_) {
+                url_is_valid = false;
+            }
+
+            if(url_is_valid) {
+                console.log('The pasted text is a valid URL');
+                let response = await fetch('/clipboard', {
+                method: 'POST',
+                body: text
+                });
+                let result = await response.text();
+                console.log('Server response:', result); // Log the server response
+                document.getElementById('output').textContent = result;
+            } else {
+                console.log('The pasted text is not a valid URL');
+                document.getElementById('output').textContent = 'The pasted text is not a valid URL';
+            }
+
+        });
+    </script>
+</body>
+</html>
