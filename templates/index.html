@@ -27,14 +27,19 @@
 
             if(url_is_valid) {
                 console.log('The pasted text is a valid URL');
-                let response = await fetch('/clipboard', {
-                method: 'POST',
-                body: text
-                });
-                let result = await response.text();
-                console.log('Server response:', result);
-                document.getElementById('output').textContent = result;
-                chatworker.postMessage(result);
+                // let resposne = await fetch('/chatWithModel', {
+                //     method: 'POST',
+                //     body: text
+                // });
+                //console.log('finished calling chatWithModel ');
+                // let response = await fetch('/clipboard', {
+                // method: 'POST',
+                // body: text
+                // });
+                // let result = await response.text();
+                // console.log('Server response:', result);
+                // document.getElementById('output').textContent = result;
+                // chatworker.postMessage(result);
                 
             
             } else {

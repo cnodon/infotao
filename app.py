@@ -12,13 +12,12 @@ def clipboard():
 
 @app.route('/chatWithModel', methods=['POST'])
 def call_python_function():
-    data = request.get_json()
-    result = chatWith(data)
-    return jsonify(result)
+    
+    return 
 
 def chatWith(data):
     # Your Python function here
-    return {"result": "This is the result from my_python_function"}
+    return {"result": "This is the result from chatWithModel"}
 
 
 if __name__ == '__main__':

@@ -1,1 +1,1 @@
-**InfoTAO is a information assistant**
+**ScopeRider is a information assistant**
